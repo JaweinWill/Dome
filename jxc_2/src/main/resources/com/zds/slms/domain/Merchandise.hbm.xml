@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.zds.slms.domain">
+	<!-- 一方 -->
+	<class name="Merchandise" table="merchandise">
+		<id name="id">
+			<generator class="identity" />
+		</id>
+		<property name="code" type="string">
+		   <column name="code" length="3" not-null="true">
+		     <comment>商品编号</comment>
+		   </column>
+		</property>
+		
+		<property name="name" />
+		
+		<property name="price" type="java.lang.Float"/>
+		
+		<!-- 下面是关联关系 -->
+		<!-- <set name="stockins">
+		  下面配置是一个外键（指得是stockin表中的键）
+		  <key column="merchandiseId"></key>
+		  <one-to-many class="Stockin"/>
+		</set> -->
+	</class>
+</hibernate-mapping>
+	

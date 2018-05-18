@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.zds.slms.domain">
+	<!-- 多方 -->
+	<class name="Stockin" table="stockin">
+		<id name="id">
+			<generator class="identity" />
+		</id>
+		<property name="code"/>
+		<property name="stockindate"/>
+		<property name="amount"/>
+		<property name="price" />
+		<property name="money"/>
+		<!-- <property name="merchandise">
+		</property> -->
+		<many-to-one name="merchandise" class="Merchandise" lazy="false">
+		   <column name="merchandiseId"></column>
+		</many-to-one>
+	</class>
+</hibernate-mapping>
+	

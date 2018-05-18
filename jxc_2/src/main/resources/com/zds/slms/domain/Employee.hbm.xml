@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.zds.slms.domain">
+	<class name="Employee" table="employee">
+		<id name="id">
+			<generator class="identity" />
+		</id>
+		<property name="code"/>
+		<property name="name" />
+		<property name="birthday"/>
+		<property name="sex" />
+		<property name="telephone"/>
+		<property name="email"></property>
+	<!--     <set name="stockins">
+	      <key column="employeeid"></key>
+	      <one-to-many class="Stockin"/>
+	    </set> -->
+	</class>
+</hibernate-mapping>
+	

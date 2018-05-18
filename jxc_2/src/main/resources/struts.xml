@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 以下这段照搬，切记！ -->
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<!-- <constant name="struts.enable.DynamicMethodInvocation" value="true"></constant> -->
+	<!-- 告诉struts2自己不要创建action，而是向spring要 -->
+	<constant name="struts.objectFactory" value="spring" />
+
+	<package name="default" extends="struts-default">
+		<default-action-ref name="index" />
+		<global-results>
+			<result name="error">/error.jsp</result>
+			<result name="finish">/finish.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="error" exception="java.lang.Exception"></exception-mapping>
+		</global-exception-mappings>
+		<action name="employeeAction_*" class="employeeAction" method="{1}">
+			<result name="findEmployee">/moduls/archive/employee.jsp</result>
+			<result name="saveEmployee">/finish.jsp</result>
+			<result name="updateEmployee">/moduls/archive/updateEmployee.jsp</result>
+			<result name="delEmployee" type="redirectAction">employeeAction_findEmployee
+			</result>
+		</action>
+		<action name="index">
+			<result type="redirectAction">
+				<param name="actionName">employeeAction_findEmployee</param>
+			</result>
+		</action>
+
+		<action name="merchandiseAction_*" class="merchandiseAction"
+			method="{1}">
+			<result name="findMerchandise">/moduls/archive/merchandise.jsp</result>
+			<result name="saveMerchandise" type="redirect">/finish.jsp</result>
+			<result name="updateMerchandise">/moduls/archive/updateMerchandise.jsp</result>
+			<result name="delMerchandise" type="redirectAction">merchandiseAction_findMerchandise
+			</result>
+		</action>
+		
+		
+		<action name="clientAction_*" class="clientAction" method="{1}">
+			<result name="findClient">/moduls/archive/client.jsp</result>
+			<result name="saveClient">/finish.jsp</result>
+			<result name="updateClient">/moduls/archive/updateClient.jsp</result>
+			<result name="delClient" type="redirectAction">clientAction_findClient
+			</result>
+		</action>
+		<!-- 下面是进货有关的action -->
+		<action name="stockinAction_*" class="stockinAction" method="{1}">
+			<result name="findStockin">/moduls/archive/stockin.jsp</result>
+			<result name="prepStockin">/moduls/archive/stockin.jsp</result>
+			<result name="preSaveStockin">/moduls/archive/addStockin.jsp</result>
+			<result name="saveStockin">/finish.jsp</result>
+			<result name="updateStockin">/moduls/archive/updateStockin.jsp</result>
+			<result name="delStockin" type="redirectAction">stockinAction_findClient
+			</result>
+		</action>
+
+	</package>
+</struts>
