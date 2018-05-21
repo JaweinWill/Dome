@@ -1,9 +1,11 @@
 package com.zds.slms.action;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.zds.slms.domain.Client;
 import com.zds.slms.domain.Merchandise;
 import com.zds.slms.domain.Stockin;
 import com.zds.slms.service.StockinService;
+import com.zds.slms.service.IClientService;
 import com.zds.slms.service.IMerchandiseService;
 import com.zds.slms.service.IStockinService;
 
@@ -12,6 +14,15 @@ import java.util.*;
 public class StockinAction extends ActionSupport {
 	private IStockinService stockinService;
 	private IMerchandiseService merchandiseService;
+	private IClientService clientService;
+
+	public IClientService getClientService() {
+		return clientService;
+	}
+
+	public void setClientService(IClientService clientService) {
+		this.clientService = clientService;
+	}
 
 	/*
 	 * 用来接收前端发来的数据（要找的进货单编号、货物的名称[商品名称]、供应商【客户】 进货日期、经手人[员工]）
@@ -20,6 +31,15 @@ public class StockinAction extends ActionSupport {
 	private Stockin stockin;// 用于接收页面中传来的数据
 	private List<Stockin> stockins;// 集合用于存放查找所有进货单对象
 	private List<Merchandise> merchandises;// 所有商品
+	private List<Client> clients;//所有客户
+	public List<Client> getClients() {
+		return clients;
+	}
+
+	public void setClients(List<Client> clients) {
+		this.clients = clients;
+	}
+
 	private String[] sel;
 
 	// 查找进货单
@@ -33,6 +53,10 @@ public class StockinAction extends ActionSupport {
 	public String prepStockin() {
 		// 从数据库取出所有的商品信息
 		merchandises = merchandiseService.findMerchandise(null);
+		System.out.println(merchandises);
+		//再取客户信息
+		clients=clientService.findClient(null);
+		System.out.println(clients);
 		return "prepStockin";
 	}
 
@@ -45,7 +69,6 @@ public class StockinAction extends ActionSupport {
 
 	// 增加
 	public String saveStockin() {
-		System.out.println(stockin);
 		this.stockinService.saveStockin(stockin);
 		return "saveStockin";
 	};

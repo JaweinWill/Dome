@@ -53,9 +53,10 @@
 			listKey="id" listValue="name" emptyOption="true">
 		</s:select>
 
-		供应商：<select name="">
-			<option value="测试">测试</option>
-		</select>
+		供应商：
+		<s:select list="clients" name="stockin.client.id"
+			listKey="id" listValue="name" emptyOption="true">
+		</s:select>
 		<p></p>
 		进货日期：<input type="text" name="stockin.stockindate" id="birthday">
 		经手人：<select>

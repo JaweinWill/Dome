@@ -98,6 +98,7 @@
 		scope="prototype">
 		<property name="stockinService" ref="stockinService"></property>
 	    <property name="merchandiseService" ref="merchandiseService"></property>
+	    <property name="clientService" ref="clientService"></property>
 	</bean>
 	
 
@@ -122,8 +123,5 @@
 			id="txPoint" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPoint" />
 	</aop:config>
-
-
-
 
 </beans>
