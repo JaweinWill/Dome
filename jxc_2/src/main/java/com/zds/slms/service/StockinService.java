@@ -22,5 +22,23 @@ public class StockinService implements IStockinService {
 		stockinDao.saveStockin(stockin);
 		
 	}
+	@Override
+	public List<Stockin> findStockinByCode(String code) {
+		System.out.println("findStockinByCode");
+		Stockin stockin=new Stockin();
+		stockin.setCode(code);
+		System.out.println(stockinDao.findStockin(stockin));
+		return stockinDao.findStockin(stockin);
+	}
+	@Override
+	public void saveOrUpdateStockin(Stockin stockin) {
+		stockinDao.saveOrUpdateStockin(stockin);
+		
+	}
+	@Override
+	public void delStockinById(Integer parseInt) {
+		stockinDao.delStockinById(parseInt);
+		
+	}
 
 }

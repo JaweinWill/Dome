@@ -76,7 +76,6 @@
 <title>增加员工</title>
 </head>
 <body>
-
 	档案管理->员工档案->新增
 	<p>
 	<form action="employeeAction_saveEmployee" method="post"

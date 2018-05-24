@@ -13,26 +13,28 @@
 	});
 </script>
 
-<title>增加进货</title>
+<title>修改进货</title>
 </head>
 <body>
 <s:debug></s:debug>
-	进货管理->进货单->新增
+	进货管理->进货单->修改
 	<p>
-	<form action="stockinAction_saveStockin" method="post"
+	<form action="stockinAction_saveOrUpdateStockin" method="post"
 		onSubmit="return v()">
+		<input type="hidden" name="stockin.id"
+			value='<s:property value="stockin.id" />' />
 		<table>
 			<tr>
-				<td width="30%">进货单编号<input type="text" name="stockin.code" /></td>
+				<td width="30%">进货单编号<input type="text" name="stockin.code" value='<s:property value="stockin.code" />'     /></td>
 				<td width="35%">货物名称<s:select list="merchandises"
 						name="stockin.merchandise.id" listKey="id" listValue="name"
 						emptyOption="true" theme="simple">
 					</s:select></td>
-				<td width="35%">进货数量<input type="text" name="stockin.amount" /></td>
+				<td width="35%">进货数量<input type="text" name="stockin.amount" value='<s:property value="stockin.amount" />' /></td>
 			</tr>
 			<tr>
-				<td>进货日期<input type="text" name="stockin.stockindate"
-					id="birthday"></td>
+				<td>进货日期<input type="text" name="stockin.stockindate" value='<s:property value="stockin.stockindate" />' 
+					id="birthday"/></td>
 
 				<td>经手人<s:select list="employees" name="stockin.employee.id"
 						listKey="id" listValue="name" emptyOption="true" theme="simple">
@@ -42,8 +44,8 @@
 					</s:select></td>
 			</tr>
 			<tr>
-				<td>货物单价（元）<input type="text" name="stockin.price" /></td>
-				<td>货物金额（元）<input type="text" name="stockin.money" /></td>
+				<td>货物单价（元）<input type="text" name="stockin.price" value='<s:property value="stockin.price" />'/></td>
+				<td>货物金额（元）<input type="text" name="stockin.money" value='<s:property value="stockin.money" />'/></td>
 				<td></td>
 			</tr>
 			<tr>

@@ -4,8 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
 <html>
@@ -16,7 +15,7 @@
 	laydate.render({
 		elem : '#birthday' //指定元素
 	});
-	
+
 	function redirect(url) {
 		document.location = url;
 	}
@@ -33,7 +32,7 @@
 			alert("请选择要删除的记录！！");
 		} else if (window.confirm("确定要删除所选的记录吗？")) {
 
-			form1.action = "clientAction_delClient";
+			form1.action = "stockinAction_delStockin";
 			form1.submit();
 
 		}
@@ -47,24 +46,25 @@
 	进货管理->进货单
 	<p>
 	<form id="f1" action="stockinAction_findStockin" method="get">
-		进货单编号：<input type="text" name="stockin.code" />
-		 货物名称：
+		进货单编号：<input type="text" name="stockin.code" /> 货物名称：
 		<s:select list="merchandises" name="stockin.merchandise.id"
 			listKey="id" listValue="name" emptyOption="true">
 		</s:select>
 
 		供应商：
-		<s:select list="clients" name="stockin.client.id"
-			listKey="id" listValue="name" emptyOption="true">
+		<s:select list="clients" name="stockin.client.id" listKey="id"
+			listValue="name" emptyOption="true">
 		</s:select>
 		<p></p>
 		进货日期：<input type="text" name="stockin.stockindate" id="birthday">
-		经手人：<select>
-			<option value="测试">测试</option>
-		</select>
+		经手人：
+		<s:select list="employees" name="stockin.employee.id" listKey="id"
+			listValue="name" emptyOption="true">
+		</s:select>
 		<p></p>
 		<input type="submit" value="查找"> <input type="button"
-			value="新增" onclick="redirect('<%=basePath%>stockinAction_preSaveStockin')">
+			value="新增"
+			onclick="redirect('<%=basePath%>stockinAction_preSaveStockin')">
 		<input type="button" value="删除" onclick="del()" />
 
 		<hr />
@@ -86,7 +86,7 @@
 					<td><input type="checkbox" name="sel"
 						value='<s:property value="id" />'></td>
 					<td><a
-						href='stockinAction_updateClient?stockin.code=<s:property value="code"/>'>修改</a></td>
+						href='stockinAction_updateStockin?stockin.code=<s:property value="code"/>'>修改</a></td>
 					<td><s:property value="code" /></td>
 					<td><s:property value="client.name" /></td>
 					<td><s:property value="merchandise.name" /></td>
@@ -94,6 +94,7 @@
 					<td><s:property value="price" /></td>
 					<td><s:property value="money" /></td>
 					<td><s:property value="stockindate" /></td>
+					<td><s:property value="employee.name"/></td>
 				</tr>
 			</s:iterator>
 		</table>

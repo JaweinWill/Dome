@@ -9,4 +9,8 @@ public interface IStockinDao {
 
 	public void saveStockin(Stockin stockin);
 
+	public void saveOrUpdateStockin(Stockin stockin);
+
+	public void delStockinById(Integer parseInt);
+
 }

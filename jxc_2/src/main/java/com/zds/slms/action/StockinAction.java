@@ -2,10 +2,12 @@ package com.zds.slms.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.zds.slms.domain.Client;
+import com.zds.slms.domain.Employee;
 import com.zds.slms.domain.Merchandise;
 import com.zds.slms.domain.Stockin;
 import com.zds.slms.service.StockinService;
 import com.zds.slms.service.IClientService;
+import com.zds.slms.service.IEmployeeService;
 import com.zds.slms.service.IMerchandiseService;
 import com.zds.slms.service.IStockinService;
 
@@ -15,6 +17,23 @@ public class StockinAction extends ActionSupport {
 	private IStockinService stockinService;
 	private IMerchandiseService merchandiseService;
 	private IClientService clientService;
+	private IEmployeeService employeeService;
+
+	public IEmployeeService getEmployeeService() {
+		return employeeService;
+	}
+
+	public void setEmployeeService(IEmployeeService employeeService) {
+		this.employeeService = employeeService;
+	}
+
+	public List<Employee> getEmployees() {
+		return employees;
+	}
+
+	public void setEmployees(List<Employee> employees) {
+		this.employees = employees;
+	}
 
 	public IClientService getClientService() {
 		return clientService;
@@ -31,7 +50,9 @@ public class StockinAction extends ActionSupport {
 	private Stockin stockin;// 用于接收页面中传来的数据
 	private List<Stockin> stockins;// 集合用于存放查找所有进货单对象
 	private List<Merchandise> merchandises;// 所有商品
-	private List<Client> clients;//所有客户
+	private List<Client> clients;// 所有客户
+	private List<Employee> employees;// 所有客户
+
 	public List<Client> getClients() {
 		return clients;
 	}
@@ -44,7 +65,14 @@ public class StockinAction extends ActionSupport {
 
 	// 查找进货单
 	public String findStockin() {
+		//查找所有商品
 		merchandises = merchandiseService.findMerchandise(null);
+		//查找所有客户
+		clients=clientService.findClient(null);
+		//查找所有员工
+		employees=employeeService.findEmployee(null);
+		System.out.println("------------------------------");
+		System.out.println(stockin);
 		stockins = stockinService.findStockin(stockin);
 		return "findStockin";
 	}
@@ -54,9 +82,11 @@ public class StockinAction extends ActionSupport {
 		// 从数据库取出所有的商品信息
 		merchandises = merchandiseService.findMerchandise(null);
 		System.out.println(merchandises);
-		//再取客户信息
-		clients=clientService.findClient(null);
+		// 再取客户信息
+		clients = clientService.findClient(null);
 		System.out.println(clients);
+		// 取雇员信息
+		employees = employeeService.findEmployee(null);
 		return "prepStockin";
 	}
 
@@ -64,6 +94,10 @@ public class StockinAction extends ActionSupport {
 	public String preSaveStockin() {
 		// 从数据库取出所有的商品信息
 		merchandises = merchandiseService.findMerchandise(null);
+		// 再取客户信息
+		clients = clientService.findClient(null);
+		// 取雇员信息
+		employees = employeeService.findEmployee(null);
 		return "preSaveStockin";
 	}
 
@@ -75,7 +109,7 @@ public class StockinAction extends ActionSupport {
 
 	// 修改
 	public String saveOrUpdateStockin() {
-		// this.stockinService.saveOrUpdateStockin(stockin);
+		this.stockinService.saveOrUpdateStockin(stockin);
 		return "saveStockin";
 	}
 
@@ -84,7 +118,7 @@ public class StockinAction extends ActionSupport {
 		if (sel != null) {
 			for (String s : sel) {
 				System.out.println(s);
-				// this.stockinService.delStockinById(Integer.parseInt(s));
+				this.stockinService.delStockinById(Integer.parseInt(s));
 			}
 		}
 		return "delStockin";
@@ -92,8 +126,15 @@ public class StockinAction extends ActionSupport {
 
 	// 负责根据编号查找相应stockin对象
 	public String updateStockin() {
-		// 1.根据编号（code）查找相应的对象
-		// stockin=this.stockinService.findStockinById(stockin.getCode()).get(0);
+		// 从数据库取出所有的商品信息
+				merchandises = merchandiseService.findMerchandise(null);
+				// 再取客户信息
+				clients = clientService.findClient(null);
+				// 取雇员信息
+				employees = employeeService.findEmployee(null);
+		// .根据编号（code）查找相应的对象
+		System.out.println("updateStockin......");
+		stockin=this.stockinService.findStockinByCode(stockin.getCode()).get(0);
 		return "updateStockin";
 	}
 

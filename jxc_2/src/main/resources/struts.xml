@@ -34,7 +34,7 @@
 		<action name="merchandiseAction_*" class="merchandiseAction"
 			method="{1}">
 			<result name="findMerchandise">/moduls/archive/merchandise.jsp</result>
-			<result name="saveMerchandise" type="redirect">/finish.jsp</result>
+			<result name="saveMerchandise">/finish.jsp</result>
 			<result name="updateMerchandise">/moduls/archive/updateMerchandise.jsp</result>
 			<result name="delMerchandise" type="redirectAction">merchandiseAction_findMerchandise
 			</result>
@@ -55,7 +55,7 @@
 			<result name="preSaveStockin">/moduls/archive/addStockin.jsp</result>
 			<result name="saveStockin">/finish.jsp</result>
 			<result name="updateStockin">/moduls/archive/updateStockin.jsp</result>
-			<result name="delStockin" type="redirectAction">stockinAction_findClient
+			<result name="delStockin" type="redirectAction">stockinAction_findStockin
 			</result>
 		</action>
 

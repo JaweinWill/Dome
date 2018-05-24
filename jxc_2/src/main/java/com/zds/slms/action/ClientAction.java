@@ -22,6 +22,7 @@ public class ClientAction extends ActionSupport{
 		this.clientService.saveClient(client);
 		return "saveClient";
 	};
+	
 	//修改
 	public String saveOrUpdateClient(){
 		this.clientService.saveOrUpdateClient(client);

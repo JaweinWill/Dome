@@ -18,6 +18,12 @@
 		<many-to-one name="merchandise" class="Merchandise" lazy="false">
 		   <column name="merchandiseId"></column>
 		</many-to-one>
+		<many-to-one name="client" class="Client" lazy="false">
+		   <column name="clientId"></column>
+		</many-to-one>
+			<many-to-one name="employee" class="Employee" lazy="false">
+		   <column name="employeeId"></column>
+		</many-to-one>
 	</class>
 </hibernate-mapping>
 	
